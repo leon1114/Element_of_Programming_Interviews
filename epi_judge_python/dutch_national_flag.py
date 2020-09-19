@@ -9,7 +9,22 @@ RED, WHITE, BLUE = range(3)
 
 
 def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
-    # TODO - you fill in here.
+    pivot = A[pivot_index]
+    smaller, equal, larger = 0,0,len(A)-1
+
+    while equal <= larger:
+        cur = A[equal]
+        if cur < pivot:
+            A[smaller], A[equal] = A[equal], A[smaller]
+            # smaller - 1 th index 에는 equal 이 있는게 확실하므로 equal += 1
+            smaller, equal = smaller + 1, equal + 1
+        elif cur == pivot:
+            equal += 1
+        else:
+            A[larger], A[equal] = A[equal], A[larger]
+            # larger 가 보낸 것은 identify 안되었으므로 cursor 유
+            larger -= 1
+
     return
 
 
